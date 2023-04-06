@@ -15,21 +15,18 @@ const Widget = () => {
     const { noteId } = useParams();
 
     useEffect(() => {
-        // get value then render it in input form
         if (noteId) {
             onValue(ref(db, `/notes/${noteId}`), snapshot => {
                 if (snapshot.val()) {
-                    const resNote : Note = {
+                    const resNote: Note = {
                         id: noteId,
                         title: snapshot?.val()?.title,
                         content: snapshot?.val()?.content,
                     }
                     setNote(resNote);
                 }
-            }
-            )
+            })
         }
-
     }, [noteId]);
 
     const saveNote = (e: React.MouseEvent) => {
@@ -43,10 +40,10 @@ const Widget = () => {
     }
 
     return (
-        <div className='flex flex-col justify-between h-full'>
+        <div className='flex flex-col justify-between h-full bg-gradient-to-r from-cyan-200 to-violet-200'>
             <TextEditor note={note} setNote={setNote} />
-            <div className='w-full flex-1 flex justify-center pt-16'>
-                <button type='button' className='py-3 px-4 min-w-btn bg-teal-600 hover:bg-teal-900 font-semibold rounded-3xl text-white self-start' onClick={saveNote}>Save</button>
+            <div className='w-full flex-1 flex justify-center pt-16' >
+                <button  type='button' className='py-3 px-4 min-w-btn bg-teal-600 hover:bg-teal-900 font-semibold rounded-3xl text-white self-start' onClick={saveNote}>Save</button>
             </div>
         </div>
     )
