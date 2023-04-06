@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 
 import { Note } from '../../types';
@@ -8,7 +8,6 @@ import { db } from '../../services/firebase';
 
 const NoteItem = ({ note }: { note: Note }) => {
   const {noteId} = useParams();
-  const navigate = useNavigate();
 
   const isActive = noteId === note.id;
   const activeStyle = "w-full relative border-solid border-4 border-red-400"
@@ -24,7 +23,7 @@ const NoteItem = ({ note }: { note: Note }) => {
         {isActive && <p className='pl-3 pr-2 py-2 w-full font-normal text-grey-50 rounded bg-white'>{note.content}</p>}
       </Link>
 
-      <button className='absolute top-1 right-1 hover:bg-gray-100 p-1' onClick={deleteNote}>
+      <button className='absolute top-1 right-1 hover:bg-gray-100 p-1 rounded-full' onClick={deleteNote}>
         <MdDelete className='text-2xl text-red-600' />
       </button>
     </li>
